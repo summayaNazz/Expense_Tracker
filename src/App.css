@@ -119,6 +119,7 @@ input[type='number'] {
 .list li.minus {
   background-color: #c0392b;
   border: 1px solid #c0392b;
+  color: #fff;
 }
 
 .delete-btn {

@@ -1,19 +1,18 @@
-import React,{createContext,useReducer} from "react";
+import React,{createContext,useReducer,useEffect} from "react";
 import AppReducer from "./AppReducer";
 
 const initialState={
-AllExpenses: [
-// {id:1,charge:'rent',amount:1600},
-// {id:2,charge:'grossery',amount:800},
-// {id:3,charge:'car-payment',amount:600},
-// {id:4,charge:'credit-card-bill',amount:1200}
-]
+AllExpenses: JSON.parse(localStorage.getItem('AllExpenses')) || []
 }
 
 export const GlobalContext=createContext(initialState);
 
 export const GlobalProvider=({children})=>{
 const [state, dispatch] = useReducer(AppReducer, initialState)
+
+useEffect(()=>{
+  localStorage.setItem('AllExpenses',JSON.stringify(state.AllExpenses))
+})
 
 function deleteHandle(id) {
     dispatch({
